@@ -2,7 +2,7 @@ package vh.projects.pastebox.service;
 
 import org.springframework.stereotype.Service;
 import vh.projects.pastebox.model.dto.RequestPasteBoxDto;
-import vh.projects.pastebox.model.dto.ResponcePasteBoxDto;
+import vh.projects.pastebox.model.dto.ResponsePasteBoxDto;
 import vh.projects.pastebox.repository.PasteBoxDao;
 import vh.projects.pastebox.util.DtoMapper;
 
@@ -20,12 +20,12 @@ public class PasteBoxServiceImpl implements PasteBoxService{
     }
 
     @Override
-    public List<ResponcePasteBoxDto> getLastPublicPastes() {
+    public List<ResponsePasteBoxDto> getLastPublicPastes() {
         return pasteBoxDao.getLastPublicPastes().stream().map(DtoMapper::pasteBoxToDto).collect(Collectors.toList());
     }
 
     @Override
-    public Optional<ResponcePasteBoxDto> getPasteByHash(long hash) {
+    public Optional<ResponsePasteBoxDto> getPasteByHash(String hash) {
        return pasteBoxDao.getPasteByHash(hash).map(DtoMapper::pasteBoxToDto);
     }
 

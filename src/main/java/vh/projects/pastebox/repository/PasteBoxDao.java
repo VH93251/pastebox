@@ -8,6 +8,6 @@ import java.util.Optional;
 public interface PasteBoxDao {
 
     List<PasteBox> getLastPublicPastes();
-    Optional<PasteBox> getPasteByHash(long hash);
+    Optional<PasteBox> getPasteByHash(String hash);
     String savePaste(PasteBox pasteBox);
 }

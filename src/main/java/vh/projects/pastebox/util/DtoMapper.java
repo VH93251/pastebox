@@ -2,7 +2,7 @@ package vh.projects.pastebox.util;
 
 import vh.projects.pastebox.model.PasteBox;
 import vh.projects.pastebox.model.dto.RequestPasteBoxDto;
-import vh.projects.pastebox.model.dto.ResponcePasteBoxDto;
+import vh.projects.pastebox.model.dto.ResponsePasteBoxDto;
 
 import java.time.LocalDateTime;
 import java.time.temporal.ChronoUnit;
@@ -18,8 +18,8 @@ public class DtoMapper {
                 .build();
     }
 
-    public static ResponcePasteBoxDto pasteBoxToDto(PasteBox pasteBox) {
-        return new ResponcePasteBoxDto(pasteBox.getPaste());
+    public static ResponsePasteBoxDto pasteBoxToDto(PasteBox pasteBox) {
+        return new ResponsePasteBoxDto(pasteBox.getPaste());
     }
 
 }

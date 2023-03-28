@@ -22,8 +22,8 @@ public class PasteBoxDaoTempImpl implements PasteBoxDao {
     }
 
     @Override
-    public Optional<PasteBox> getPasteByHash(long hash) {
-       return temDB.stream().filter(pasteBox -> pasteBox.getHash().equals(String.valueOf(hash))).findAny();
+    public Optional<PasteBox> getPasteByHash(String hash) {
+       return temDB.stream().filter(pasteBox -> pasteBox.getHash().equals(hash)).filter(pasteBox -> pasteBox.getDecayDate().isAfter(LocalDateTime.now())).findAny();
 
     }
 
