@@ -2,6 +2,8 @@ package vh.projects.pastebox.repository;
 
 import org.springframework.stereotype.Repository;
 import vh.projects.pastebox.model.PasteBox;
+
+import static vh.projects.pastebox.model.PasteBox.AccessStatus.*;
 import static vh.projects.pastebox.tempDB.TempDB.*;
 
 import java.time.LocalDateTime;
@@ -18,12 +20,18 @@ public class PasteBoxDaoTempImpl implements PasteBoxDao {
     public List<PasteBox> getLastPublicPastes() {
         List<PasteBox> temDB1 = new LinkedList<>(temDB);
          Collections.reverse(temDB1);
-         return temDB1.stream().filter(pasteBox -> pasteBox.getDecayDate().isAfter(LocalDateTime.now())).limit(10).collect(Collectors.toList());
+         return temDB1.stream()
+                 .filter(pasteBox -> pasteBox.getAccessStatus()==PUBLIC)
+                 .filter(pasteBox -> pasteBox.getDecayDate().isAfter(LocalDateTime.now()))
+                 .limit(10)
+                 .collect(Collectors.toList());
     }
 
     @Override
     public Optional<PasteBox> getPasteByHash(String hash) {
-       return temDB.stream().filter(pasteBox -> pasteBox.getHash().equals(hash)).filter(pasteBox -> pasteBox.getDecayDate().isAfter(LocalDateTime.now())).findAny();
+       return temDB.stream()
+               .filter(pasteBox -> pasteBox.getHash().equals(hash))
+               .filter(pasteBox -> pasteBox.getDecayDate().isAfter(LocalDateTime.now())).findAny();
 
     }
 
