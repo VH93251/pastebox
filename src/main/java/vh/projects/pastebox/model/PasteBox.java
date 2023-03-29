@@ -2,19 +2,27 @@ package vh.projects.pastebox.model;
 
 
 import lombok.*;
-import vh.projects.pastebox.util.HashGenerator;
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
 
+import java.time.Instant;
 import java.time.LocalDateTime;
 
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@Builder
+@Document
 public class PasteBox {
-    String paste;
-    AccessStatus accessStatus;
-    LocalDateTime decayDate;
-    final String hash = String.valueOf(HashGenerator.getHash());
+    @Id
+    private String id;
+    private String paste;
+    private AccessStatus accessStatus;
+    private LocalDateTime decayDate;
+    private String hash;
+    @CreatedDate
+    private Instant timeStamp;
+
 
 
     public enum AccessStatus{

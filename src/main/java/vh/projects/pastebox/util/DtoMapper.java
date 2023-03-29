@@ -11,11 +11,11 @@ public class DtoMapper {
 
     public static PasteBox DtoToPasteBox(RequestPasteBoxDto dto) {
 
-        return  PasteBox.builder()
-                .paste(dto.paste())
-                .accessStatus(dto.accessStatus())
-                .decayDate(LocalDateTime.now().plus(dto.liveTime(), ChronoUnit.MINUTES))
-                .build();
+        PasteBox pasteBox = new PasteBox();
+        pasteBox.setPaste(dto.paste());
+        pasteBox.setAccessStatus(dto.accessStatus());
+        pasteBox.setDecayDate(LocalDateTime.now().plus(dto.liveTime(), ChronoUnit.MINUTES));
+        return pasteBox;
     }
 
     public static ResponsePasteBoxDto pasteBoxToDto(PasteBox pasteBox) {

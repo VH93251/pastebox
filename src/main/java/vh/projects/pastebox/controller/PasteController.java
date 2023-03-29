@@ -1,11 +1,12 @@
 package vh.projects.pastebox.controller;
 
 import org.springframework.http.HttpStatus;
-import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import vh.projects.pastebox.model.PasteBox;
 import vh.projects.pastebox.model.dto.RequestPasteBoxDto;
 import vh.projects.pastebox.model.dto.ResponsePasteBoxDto;
+import vh.projects.pastebox.repository.PasteBoxMongoRepo;
 import vh.projects.pastebox.service.PasteBoxService;
 
 import java.util.Collection;
@@ -16,7 +17,8 @@ public class PasteController {
 
     PasteBoxService pasteBoxService;
 
-    public PasteController(PasteBoxService pasteBoxService) {
+
+    public PasteController(PasteBoxService pasteBoxService, PasteBoxMongoRepo mb) {
         this.pasteBoxService = pasteBoxService;
     }
 
@@ -37,4 +39,5 @@ public class PasteController {
                 new ResponseEntity<>(response, HttpStatus.OK) :
                 new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
+
 }
